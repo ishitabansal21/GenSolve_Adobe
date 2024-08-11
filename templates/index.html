@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curvetopia</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .container {
+        margin-top: 50px;
+      }
+      .download-buttons {
+        margin-top: 20px;
+      }
+      .output-images img {
+        max-width: 100%;
+        height: auto;
+      }
+      .output-images {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">
+        Welcome to Curvetopia, where we bring order and beauty to the world of
+        2D curves!
+      </h1>
+      <div class="d-flex justify-content-center">
+        <form method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label
+              for="file"
+              style="
+                font-size: 18px;
+                margin-top: 10px;
+                color: #dc3545;
+                font-weight: bold;
+              "
+              >Select your SVG or CSV file to upload:</label
+            >
+
+            <input
+              type="file"
+              class="form-control-file"
+              id="file"
+              name="file"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-danger">Upload</button>
+        </form>
+      </div>
+
+      {% if svg_file and plot_svg_file and plot_png_file %}
+      <div class="output-images">
+        <h2>Output</h2>
+        <div style="display: flex">
+          <div>
+            <h3 style="text-align: center">SVG Plot:</h3>
+            <img src="{{ plot_svg_file }}" alt="SVG Plot" />
+          </div>
+          <div>
+            <h3 style="text-align: center">PNG Plot:</h3>
+            <img src="{{ plot_png_file }}" alt="PNG Plot" />
+          </div>
+        </div>
+      </div>
+      <div
+        class="download-buttons"
+        style="margin-bottom: 20px; text-align: center"
+      >
+        <a href="{{ plot_png_file }}" class="btn btn-danger" download
+          >Download PNG Plot</a
+        >
+        <a href="{{ plot_svg_file }}" class="btn btn-danger" download
+          >Download SVG Plot</a
+        >
+        <a href="{{ svg_file }}" class="btn btn-danger" download
+          >Download Processed SVG</a
+        >
+      </div>
+      {% endif %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
